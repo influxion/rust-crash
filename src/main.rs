@@ -1,12 +1,13 @@
 #![allow(dead_code)]
-#![allow(unused_imports)]
 
-mod cf; // control flow
-mod sh; // stack and heap
-mod cl; // combination lock
-mod tv; // types and variables
-mod ds; // data structures
+mod combination_lock;
+mod control_flow;
+mod data_structures;
+mod pattern_matching;
+mod stack_heap;
+mod types_variables;
+mod standard_collections;
 
 fn main() {
-    ds::optiont()
+    standard_collections::vector();
 }

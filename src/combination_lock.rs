@@ -10,7 +10,7 @@ enum State {
     Unlocked
 }
 
-pub fn combination_lock() {
+fn combination_lock() {
     let code = String::from("1234");
     let mut state = State::Locked;
     let mut entry = String::new();
@@ -49,3 +49,4 @@ pub fn combination_lock() {
         }
     }
 }
+

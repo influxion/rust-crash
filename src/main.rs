@@ -8,7 +8,8 @@ mod stack_heap;
 mod types_variables;
 mod standard_collections;
 mod chars_strings;
+mod functions;
 
 fn main() {
-    chars_strings::number_guessing_game();
+    functions::higher_order();
 }

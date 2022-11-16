@@ -9,7 +9,8 @@ mod types_variables;
 mod standard_collections;
 mod chars_strings;
 mod functions;
+mod traits;
 
 fn main() {
-    functions::higher_order();
+    traits::traits()
 }

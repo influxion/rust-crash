@@ -12,5 +12,5 @@ mod functions;
 mod traits;
 
 fn main() {
-    traits::params()
+    traits::test()
 }

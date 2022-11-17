@@ -126,7 +126,7 @@ pub fn higher_order() {
     let sum2 = (0..)
         .map(|x| x*x)
         .take_while(|&x| x < limit)
-        .filter(|x| is_even(*x))
+        .filter(|&x| is_even(x))
         .fold(0, |sum, x| sum + x);
 
         println!("hof sum = {}", sum2)

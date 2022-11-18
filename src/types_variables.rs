@@ -3,9 +3,9 @@
 
 use std::mem;
 
+// must put the type in the declaration
 pub const MEANING_OF_LIFE: u8 = 42; // no fixed address
-
-pub static mut Z:i32 = 123; // must run in unsafe mode
+pub static mut Z:i32 = 123; // must run in unsafe mode when you have the mut keyword
 
 pub fn scope_and_shadowing() {
     let a = 123;
@@ -81,7 +81,7 @@ pub fn fundamental_data_types() {
     let d: char = 'x';
     println!("{} is a char, size = {} bytes", d, mem::size_of_val(&d));
 
-    // f32, f64 IEEE754 singed!
+    // f32, f64 IEEE754 signed!
 
     let e = 2.5;
     println!("{}, size = {} bytes", e, mem::size_of_val(&e));

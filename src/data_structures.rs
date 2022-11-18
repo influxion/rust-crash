@@ -202,3 +202,14 @@ pub fn generics() {
 
     let myline = LineTwo { start: a, end: b };
 }
+
+// types
+type Age = u8;
+type Name = String;
+
+pub fn types() {
+    let a: Age = 37;
+    let n: Name = String::from("Jordon");
+
+    println!("My name is {}, and I am {} years old", n, a)
+}

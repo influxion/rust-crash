@@ -1,5 +1,6 @@
 #![allow(dead_code)]
 #![allow(unused_imports)]
+#![allow(unused_variables)]
 
 pub fn if_statement() {
     let temp = 35;
@@ -38,6 +39,19 @@ pub fn while_and_loop() {
         println!("y = {}", y);
 
         if y == 1<<10 { break; }
+    }
+
+    let x = loop {
+        println!("loop forever");
+        break 5;
+    }; // x = 5
+
+    'outer: loop {
+        println!("loop forever");
+        loop {
+            break 'outer
+        }
+
     }
 }
 

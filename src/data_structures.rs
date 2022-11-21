@@ -25,6 +25,40 @@ pub fn structures() {
     println!("my line starts at x:{}, y:{} and ends at x:{}, y:{}", myline.start.x, myline.start.y, myline.end.x, myline.end.y);
 }
 
+struct Product {
+    name: String,
+    price: f32,
+    in_stock: bool
+}
+
+impl Product {
+    fn new(name: String, price: f32) -> Product {
+        Product { name, price, in_stock: true }
+    }
+    fn get_default_sales_tax() -> f32 {
+        0.13
+    }
+    fn calc_sales_tax(&self) -> f32 {
+        self.price * Product::get_default_sales_tax()
+    }
+    fn set_price(&mut self, price: f32) {
+        self.price = price;
+    }
+    fn buy(self) -> i32 {
+        let name = self.name;
+        println!("{name} was bought!");
+        123
+    }
+}
+
+pub fn stucts() {
+    let mut book = Product::new(String::from("Book"), 28.99);
+    let sales_tax = book.calc_sales_tax();
+    println!("sales tax {}", sales_tax);
+    book.set_price(1.0);
+    book.buy();
+}
+
 // enums
 enum Color {
     Red,
@@ -158,6 +192,9 @@ fn sum_and_product(x: i32, y: i32) -> (i32, i32) {
 }
 
 pub fn tuples() {
+    struct RGB(i32, i32, i32);
+    let rbg_color = RGB(122, 244, 0);
+
     let x = 3;
     let y = 4;
     let sp = sum_and_product(x, y);

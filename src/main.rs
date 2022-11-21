@@ -2,7 +2,7 @@
 
 mod combination_lock; // Combination lock mini project
 mod control_flow; // If, While, For and Match statements
-mod data_structures; // Structs, Enums, Option<T>, Type and Union
+mod data_structures; // Structs, Impl, Enums, Option<T>, Type and Union
 mod pattern_matching; // Match statements to match partterns
 mod stack_heap; // Ownership and borrowing
 mod types_variables; // Data types and variable types
@@ -13,5 +13,5 @@ mod traits; // OOP stuff
 mod error_handling;
 
 fn main() {
-    chars_strings::slices()
+    chars_strings::strings()
 }

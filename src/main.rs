@@ -10,7 +10,6 @@ mod standard_collections; // Vectors, HashMaps, HashSet and Iterators
 mod chars_strings; // Chars and different strings and slices
 mod functions; // Functions within functions
 mod traits; // OOP stuff
-mod error_handling;
 
 fn main() {
     chars_strings::strings()

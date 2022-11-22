@@ -3,110 +3,120 @@
 #![allow(unused_variables)]
 #![allow(unused_mut)]
 
-trait Animal {
-    fn create(name: &'static str) -> Self;
-
-    fn name(&self) -> &'static str;
-
-    fn talk(&self) {
-        println!("{} cannot talk", self.name())
+trait Vehicle: Paint {
+    fn park(&self);
+    fn get_default_color() -> String {
+        "black".to_owned()
     }
 }
 
-struct Cat {
-    name: &'static str
-}
-
-struct Human {
-    name: &'static str
-}
-
-impl Animal for Cat {
-    fn create(name: &'static str) -> Cat {
-        Cat { name }
-    }
-
-    fn name(&self) -> &'static str {
-        self.name
-    }
-
-    fn talk(&self) {
-        println!("{} says meow", self.name())
+trait Paint {
+    fn paint(&self, color: String) {
+        println!("painting object: {}", color)
     }
 }
 
-impl Animal for Human {
-    fn create(name: &'static str) -> Human {
-        Human { name }
-    }
+struct VehicleInfo {
+    make: String,
+    model: String,
+    year: u16
+}
 
-    fn name(&self) -> &'static str {
-        self.name
-    }
+struct Car {
+    info: VehicleInfo
+}
 
-    fn talk(&self) {
-        println!("{} says hello", self.name())
+impl Vehicle for Car {
+    fn park(&self) {
+        println!("parking car!")
     }
 }
 
-trait Summable<T> {
-    fn sum(&self) -> T;
+impl Paint for Car {}
+
+struct Truck {
+    info: VehicleInfo
 }
 
-impl Summable<i32> for Vec<i32> {
-    fn sum(&self) -> i32 {
-        let mut result: i32 = 0;
-        for x in self { result += *x; }
-        result
+impl Truck {
+    fn unload(&self) {
+        println!("unloading truck.")
+    }
+}
+
+impl Vehicle for Truck {
+    fn park(&self) {
+        println!("parking truck!")
+    }
+}
+
+impl Paint for Truck {}
+
+struct House {}
+
+impl Paint for House {
+    fn paint(&self, color: String) {
+        println!("painting house: {color}")
     }
 }
 
 pub fn traits() {
-    let h: Human = Animal::create("John");
-    h.talk();
+    let car = Car {
+        info: VehicleInfo { make: "Honda".to_owned(), model: "Civic".to_owned(), year: 2019 }
+    };
+    let house = House {};
+    let object = create_paintable_object(true);
 
-    let c = Cat::create("Misty");
-    c.talk();
+    let paintable_objects: Vec<&dyn Paint> = vec![&car, &house];
 
-    let a = vec![1,2,3];
-    println!("sum = {}", a.sum());
+    paint_red(&car);
+    paint_red(&house);
+    paint_red(object.as_ref());
+
+    paint_vehicle_green(&car);
+    // paint_vehicle_green(&house);
+    // paint_vehicle_green(&object);
+
 }
 
-//-----------------------------------------------------------------------
-use std::{fmt::Debug, str::SplitWhitespace};
-
-
-#[derive(Debug)]
-struct Circle {
-    radius: f64,
-}
-#[derive(Debug)]
-struct Square {
-    side: f64,
+// Trait bound
+// fn paint_red<T: Paint>(object: &T) {
+//     object.paint("red".to_owned());
+// }
+fn paint_red(object: &dyn Paint) {
+    object.paint("red".to_owned());
 }
 
-trait Shape {
-    fn area(&self) -> f64;
+fn paint_blue(object: &impl Paint) {
+    object.paint("blue".to_owned());
 }
 
-impl Shape for Circle {
-    fn area(&self) -> f64 {
-        self.radius * self.radius * std::f64::consts::PI
+fn paint_vehicle_green<T>(object: &T) where T: Vehicle {
+    object.paint("green".to_owned());
+}
+
+fn create_paintable_object(vehicle: bool) -> Box<dyn Paint> {
+    if vehicle {
+        Box::new(Car {
+            info: VehicleInfo { make: "Honda".to_owned(), model: "Civic".to_owned(), year: 2019 }
+        })
+    } else {
+        Box::new(House {})
     }
 }
 
-// fn print_info(shape: impl Shape + Debug) {
-fn print_info<T: Shape + Debug>(shape: T) {
-    println!("{:?}", shape);
-    println!("The area is {}", shape.area())
+#[derive(Debug, PartialEq)]
+struct Point {
+    x: i32,
+    y: i32
 }
 
-pub fn params() {
-    let c = Circle { radius: 2.0 };
-    print_info(c)
-}
+pub fn derive() {
+    let p1 = Point { x: 3, y: 1 };
+    let p2 = Point { x: 3, y: 1 };
+    let p3 = Point { x: 5, y: 5 };
 
-// -----------------------------------------------------------------------
-
-pub fn test() {
+    println!("{:?}", p1);
+    println!("{}", p1 == p2);
+    println!("{}", p1 == p3);
 }

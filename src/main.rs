@@ -15,5 +15,5 @@ mod pointers; // Box smart pointer, rc smart pointer, refcell smart pointer
 mod error_handling; // Error handling
 
 fn main() {
-    error_handling::recoverable_errors()
+    error_handling::credit_card_cli()
 }

@@ -13,7 +13,9 @@ mod traits; // Traits, trait bound, supertraits, deriving
 mod lifetimes; // Lifetimes
 mod pointers; // Box smart pointer, rc smart pointer, refcell smart pointer
 mod error_handling; // Error handling
+mod dep_error_handling; // Error handling with third party error handling (main fn)
+mod hash_error_handling; // Using error-stack for error handling
 
 fn main() {
-    error_handling::credit_card_cli()
+    hash_error_handling::main()
 }
